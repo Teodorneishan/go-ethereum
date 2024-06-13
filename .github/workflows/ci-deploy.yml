@@ -25,7 +25,7 @@ jobs:
         working-directory: ./hardhat
         
       - name: Install npm dependencies
-        run: npm install --save-dev --force hardhat @nomiclabs/hardhat-waffle @nomiclabs/hardhat-ethers @nomicfoundation/hardhat-ignition ethers nomicfoundation/hardhat-toolbox
+        run: npm install --save-dev --force hardhat @nomiclabs/hardhat-waffle @nomiclabs/hardhat-ethers @nomicfoundation/hardhat-ignition ethers
         working-directory: ./hardhat
         
       - name: Compile project
