@@ -1,0 +1,33 @@
+name: CI Build
+
+on:
+  pull_request:
+    types: [closed]
+    branches:
+      - v1.10
+
+jobs:
+  build:
+    if: github.event.pull_request.merged == true && contains(github.event.pull_request.labels.*.name, 'CI:Build')
+    runs-on: self-hosted
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+      with:
+        ref: v1.10
+      
+    - name: checks
+      run: | 
+        whoami
+        pwd
+        ls
+
+    - name: Build Docker image
+      run: docker build . -t teodorneishan/limechain-task-teodor:latest
+      
+    - name: Login to Docker Hub
+      run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+
+    - name: Push Docker image
+      run: docker push teodorneishan/limechain-task-teodor:latest
