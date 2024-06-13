@@ -1,0 +1,36 @@
+name: CI Deploy
+
+on:
+  pull_request:
+    types: [closed]
+    branches:
+      - v1.10
+
+jobs:
+  deploy:
+    if: github.event.pull_request.merged == true && contains(github.event.pull_request.labels.*.name, 'CI:Deploy')
+    runs-on: self-hosted
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          ref: v1.10
+
+      - name: Run Docker compose
+        run: docker compose -f docker-compose.yml up -d
+
+      - name: Compile project
+        run: npx hardhat compile
+        working-directory: ./hardhat
+
+      - name: Deploy contracts
+        run: npx hardhat ignition deploy ./ignition/modules/Lock.js --network gethDev
+        working-directory: ./hardhat
+
+      - name: Commit and push the new image
+        run: |
+          CONTAINER_ID=$(docker ps -q --filter "ancestor=teodorneishan/limechain-task-teodor:latest")
+          TIMESTAMP=$(date +%Y%m%d%H%M%S)
+          docker commit $CONTAINER_ID teodorneishan/limechain-task-teodor:deployed-$TIMESTAMP
+          docker push teodorneishan/limechain-task-teodor:deployed-$TIMESTAMP
