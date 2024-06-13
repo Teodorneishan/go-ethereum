@@ -1,0 +1,17 @@
+th.getBalance(eth.accounts[0])
+eth.getBalance(eth.accounts[0])
+e
+ethAccount()
+ethAccounts()
+ethAccounts[0]
+eth.Accounts[0]
+eth.accounts[0]
+eth.getBalance(eth.accounts[0])
+eth.accounts()
+eth.Accounts()
+eth.account()
+eth.account([0])
+eth.account[0]
+eth.Account([0])
+eth.getBalance(eth.accounts[0])
+eth.accounts[0]

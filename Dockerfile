@@ -1,33 +1,37 @@
-# Support setting various labels on the final image
-ARG COMMIT=""
-ARG VERSION=""
-ARG BUILDNUM=""
+# Use an official Ubuntu base image
+FROM ubuntu:20.04
 
-# Build Geth in a stock Go builder container
-FROM golang:1.18-alpine as builder
+# Install dependencies
+RUN apt-get update && \
+    apt-get install -y wget git build-essential curl && \
+    rm -rf /var/lib/apt/lists/*
 
-RUN apk add --no-cache gcc musl-dev linux-headers git
+# Install Node.js
+RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
+    apt-get install -y nodejs
 
-# Get dependencies - will also be cached if we won't change go.mod/go.sum
-COPY go.mod /go-ethereum/
-COPY go.sum /go-ethereum/
-RUN cd /go-ethereum && go mod download
+# Install Go
+RUN wget https://go.dev/dl/go1.22.4.linux-amd64.tar.gz && \
+    tar -C /usr/local -xzf go1.22.4.linux-amd64.tar.gz && \
+    rm go1.22.4.linux-amd64.tar.gz
 
-ADD . /go-ethereum
-RUN cd /go-ethereum && go run build/ci.go install -static ./cmd/geth
+# Update PATH environment variable
+ENV PATH /usr/local/go/bin:$PATH
 
-# Pull Geth into a second stage deploy alpine container
-FROM alpine:latest
+# Clone the go-ethereum repository 
+RUN git clone https://github.com/Teodorneishan/go-ethereum.git && \
+    cd go-ethereum && \
+    git checkout v1.10
 
-RUN apk add --no-cache ca-certificates
-COPY --from=builder /go-ethereum/build/bin/geth /usr/local/bin/
+# Set the working directory
+WORKDIR ./go-ethereum
 
-EXPOSE 8545 8546 30303 30303/udp
-ENTRYPOINT ["geth"]
+# Build the go-ethereum project
+RUN make geth
 
-# Add some metadata labels to help programatic image consumption
-ARG COMMIT=""
-ARG VERSION=""
-ARG BUILDNUM=""
+# Expose necessary ports
+EXPOSE 30304 8552 8553
 
-LABEL commit="$COMMIT" version="$VERSION" buildnum="$BUILDNUM"
+# Command to start the blockchain network
+CMD ["build/bin/geth", "--datadir", "datadir", "--port", "30304", "--http", "--http.addr", "localhost", "--http.port", "8552", "--http.api", "personal,eth,web3,txpool,admin", "--networkid", "2345", "--allow-insecure-unlock", "--authrpc.port", "8553", "--nodiscover", "console"]
+
