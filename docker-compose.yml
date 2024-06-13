@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  devnet:
+    image: teodorneishan/limechain-task-teodor:latest
+    container_name: devnet
+    ports:
+      - "30304:30304"
+      - "8552:8552"
+      - "8553:8553"
+    volumes:
+      - ./datadir:/go-ethereum/datadir
+    command: >
+      build/bin/geth
+      --datadir datadir
+      --port 30304
+      --http
+      --http.addr "localhost"
+      --http.port 8552
+      --http.api "personal,eth,web3,txpool,admin"
+      --networkid 2345
+      --allow-insecure-unlock
+      --authrpc.port 8553
+      --nodiscover
+      console
+    tty: true
+    stdin_open: true
+
