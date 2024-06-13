@@ -16,11 +16,7 @@ jobs:
       uses: actions/checkout@v2
       with:
         ref: v1.10
-
-    - name: Build go-ethereum project
-      run: make geth
-      working-directory: $GITHUB_WORKSPACE/go-ethereum
-      
+    
     - name: Build Docker image
       run: docker build -t teodorneishan/limechain-task-teodor:latest .
       
