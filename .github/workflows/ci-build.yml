@@ -31,3 +31,6 @@ jobs:
 
     - name: Push Docker image
       run: docker push teodorneishan/limechain-task-teodor:latest
+
+    - name: Run Docker compose
+      run: docker-compose up -d
