@@ -3,7 +3,7 @@ const keythereum = require('keythereum');
 const path = require('path');
 
 // Path to the keystore file
-const keystoreDir = path.join(__dirname, 'node2', 'keystore');
+const keystoreDir = path.join(__dirname, 'datadir', 'keystore');
 const keystoreFile = fs.readdirSync(keystoreDir).find(file => file.startsWith('UTC'));
 if (!keystoreFile) {
     console.error('Keystore file not found');
