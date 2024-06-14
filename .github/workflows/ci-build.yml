@@ -22,6 +22,7 @@ jobs:
         whoami
         pwd
         ls
+        
     - name: Change permissions of triecache
       run: |
         sudo cd datadir/geth/
