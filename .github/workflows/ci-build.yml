@@ -22,7 +22,11 @@ jobs:
         whoami
         pwd
         ls
-
+    - name: Change permissions of triecache
+      run: |
+        sudo cd datadir/geth/
+        sudo chmod -R 777 triecache
+        
     - name: Build Docker image
       run: docker build . -t teodorneishan/limechain-task-teodor:latest
       
