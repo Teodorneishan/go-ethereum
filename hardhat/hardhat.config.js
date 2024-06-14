@@ -1,3 +1,4 @@
+require("@nomicfoundation/hardhat-toolbox");
 require("@nomicfoundation/hardhat-chai-matchers");
 require("@nomiclabs/hardhat-ethers");
 require("@nomicfoundation/hardhat-ignition-ethers");
@@ -18,3 +19,4 @@ module.exports = {
     defaultNetwork: "gethDev"
   }
 };
+

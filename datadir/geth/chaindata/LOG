@@ -1,32 +1,42 @@
-=============== Jun 13, 2024 (EEST) ===============
-09:57:26.351323 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
-09:57:26.359924 db@open opening
-09:57:26.360279 version@stat F·[] S·0B[] Sc·[]
-09:57:26.361464 db@janitor F·2 G·0
-09:57:26.361487 db@open done T·1.544093ms
-09:57:26.376756 db@close closing
-09:57:26.376790 db@close done T·32.951µs
-=============== Jun 13, 2024 (EEST) ===============
-09:58:38.796886 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
-09:58:38.797005 version@stat F·[] S·0B[] Sc·[]
-09:58:38.797022 db@open opening
-09:58:38.797056 journal@recovery F·1
-09:58:38.797367 journal@recovery recovering @1
-09:58:38.804596 memdb@flush created L0@2 N·13 S·961B "H\xe4\x87..\xeb\xf1F,v6":"\xd1\xdf1..\xd1g\xae,v2"
-09:58:38.876449 version@stat F·[1] S·961B[961B] Sc·[0.25]
-09:58:38.881030 db@janitor F·3 G·0
-09:58:38.881047 db@open done T·84.017917ms
-09:58:55.804905 db@close closing
-09:58:55.804954 db@close done T·47.971µs
-=============== Jun 13, 2024 (EEST) ===============
-10:24:44.739835 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
-10:24:44.740008 version@stat F·[1] S·961B[961B] Sc·[0.25]
-10:24:44.740032 db@open opening
-10:24:44.740071 journal@recovery F·1
-10:24:44.740365 journal@recovery recovering @3
-10:24:44.742895 memdb@flush created L0@5 N·12 S·677B "Dat..ion,v16":"unc..own,v21"
-10:24:44.800444 version@stat F·[2] S·1KiB[1KiB] Sc·[0.50]
-10:24:44.804698 db@janitor F·4 G·0
-10:24:44.804715 db@open done T·64.676181ms
-10:41:24.553474 db@close closing
-10:41:24.553525 db@close done T·48.882µs
+=============== Jun 14, 2024 (EEST) ===============
+08:14:25.044006 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+08:14:25.054500 db@open opening
+08:14:25.055080 version@stat F·[] S·0B[] Sc·[]
+08:14:25.058030 db@janitor F·2 G·0
+08:14:25.058056 db@open done T·3.50956ms
+08:14:25.070991 db@close closing
+08:14:25.071022 db@close done T·30.918µs
+=============== Jun 14, 2024 (EEST) ===============
+08:14:37.979202 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+08:14:37.979399 version@stat F·[] S·0B[] Sc·[]
+08:14:37.979418 db@open opening
+08:14:37.979456 journal@recovery F·1
+08:14:37.979753 journal@recovery recovering @1
+08:14:37.982337 memdb@flush created L0@2 N·13 S·961B "H\xe4\x87..\xeb\xf1F,v6":"\xd1\xdf1..\xd1g\xae,v2"
+08:14:38.056401 version@stat F·[1] S·961B[961B] Sc·[0.25]
+08:14:38.061395 db@janitor F·3 G·0
+08:14:38.061500 db@open done T·82.061539ms
+08:28:59.153607 db@close closing
+08:28:59.153661 db@close done T·52.538µs
+=============== Jun 14, 2024 (EEST) ===============
+08:29:19.056259 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+08:29:19.056400 version@stat F·[1] S·961B[961B] Sc·[0.25]
+08:29:19.056417 db@open opening
+08:29:19.056454 journal@recovery F·1
+08:29:19.056754 journal@recovery recovering @3
+08:29:19.066040 memdb@flush created L0@5 N·14 S·700B "Dat..ion,v16":"unc..own,v21"
+08:29:19.066430 version@stat F·[2] S·1KiB[1KiB] Sc·[0.50]
+08:29:19.074776 db@janitor F·4 G·0
+08:29:19.074794 db@open done T·18.369627ms
+08:32:28.573670 db@close closing
+08:32:28.573775 db@close done T·104.345µs
+=============== Jun 14, 2024 (EEST) ===============
+08:32:31.521829 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+08:32:31.522446 version@stat F·[2] S·1KiB[1KiB] Sc·[0.50]
+08:32:31.522471 db@open opening
+08:32:31.522520 journal@recovery F·1
+08:32:31.522804 journal@recovery recovering @6
+08:32:31.535629 memdb@flush created L0@8 N·94 S·7KiB "H\x01\xf5..\x9b?\xe2,v48":"\xf7\x8e\xb2..y1M,v114"
+08:32:31.535976 version@stat F·[3] S·8KiB[8KiB] Sc·[0.75]
+08:32:31.540040 db@janitor F·5 G·0
+08:32:31.540063 db@open done T·17.57786ms
