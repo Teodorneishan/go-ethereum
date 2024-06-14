@@ -105,8 +105,8 @@ github actions using self hosted runner
 - build and deploy pipelines
 - terraform script to create a k8s cluster in the cloud and deploys an instance of the built image to it.
  
-More
 Dockerfile - Use Base image ubuntu , install nodejs,go and geth , clone repo , compile whole repo , start private blockchain
+Docker Compose - definition that runs a local devnet 
 Pipelines ( .github/workflows )
 - ci-build.yml - clone repository , build image , login to private docker repo and pushing ( user and password stored as secrets in github repo ). When a PR with label CI:Build is merged in v1.10 branch, a trigger kicks in.
 - ci-deploy.yml - clone repository , start docker compose , docker commit and docker push the new image. When a PR with label CI:Deploy is merged in the v1.10, a pipeline is triggered.
@@ -204,4 +204,9 @@ build/bin/geth console
 - check account being used - eth.accounts[0]
 - check balance of that account - eth.getBalance(eth.accounts[0])
 - check pending transactions - eth.pendingTransactions 
+```
+
+We can run separately the docker with
+```shell
+docker run -it -d -p 30304:30304 -p 8552:8552 -p 8553:8553 image_name
 ```
