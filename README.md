@@ -92,6 +92,25 @@ This command will:
 
 
 ### My setup and useful commands
+Binaries:
+- geth binary v1.10
+- nodejs v20.14.0
+- go version - go1.22.4
+
+Infrastructure:
+github actions using self hosted runner 
+- runner configured as a service , starting the script
+- Docker
+- Docker compose
+- build and deploy pipelines
+- terraform script to create a k8s cluster in the cloud and deploys an instance of the built image to it.
+ 
+More
+Dockerfile - Use Base image ubuntu , install nodejs,go and geth , clone repo , compile whole repo , start private blockchain
+Pipelines ( .github/workflows )
+- ci-build.yml - clone repository , build image , login to private docker repo and pushing ( user and password stored as secrets in github repo ). When a PR with label CI:Build is merged in v1.10 branch, a trigger kicks in.
+- ci-deploy.yml - clone repository , start docker compose , docker commit and docker push the new image. When a PR with label CI:Deploy is merged in the v1.10, a pipeline is triggered.
+
 
 Install npm dependencies , compile and deploy contract
 
