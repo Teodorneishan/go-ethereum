@@ -104,7 +104,9 @@ github actions using self hosted runner
 - Docker compose
 - build and deploy pipelines
 - terraform script to create a k8s cluster in the cloud and deploys an instance of the built image to it.
- 
+- extractPrivateKey.js and custom hardhat tests ( hardhat/test/my-tests.js) , genesis.json and hardhat/hardhat.config.js
+
+  
 Dockerfile - Use Base image ubuntu , install nodejs,go and geth , clone repo , compile whole repo , start private blockchain
 Docker Compose - definition that runs a local devnet 
 Pipelines ( .github/workflows )
@@ -112,9 +114,11 @@ Pipelines ( .github/workflows )
 - ci-deploy.yml - clone repository , start docker compose , docker commit and docker push the new image. When a PR with label CI:Deploy is merged in the v1.10, a pipeline is triggered.
 
 
-Install npm dependencies , compile and deploy contract
+Install npm dependencies , compile and deploy contract in hardhat project 
 
 ```shell
+mkdir hardhat
+cd hardhat
 npm install --save-dev --force @nomiclabs/hardhat-waffle @nomiclabs/hardhat-ethers @nomicfoundation/hardhat-ignition ethers hardhat@^2.22.5 @nomicfoundation/hardhat-toolbox@^5.0.0
 
 npx hardhat init -y  ( still i had to press y and choose javascript project )
@@ -138,7 +142,7 @@ Paste public address in go-ethereum/genesis.json
 
 
 
-Gather private key with this script  - serves the configuration file for the Hardhat environment, in the specified getDev private network
+Gather private key with this CUSTOM script (extractPrivateKey.js) - serves the configuration file for the Hardhat environment, in the specified getDev private network
 
 Install prerequisites for using the script. 
 
@@ -195,6 +199,11 @@ To stop mining
 miner.stop()
 ```
 
+We can run tests to hardhat project
+```shell
+cd hardhat
+npx hardhat test test/my-tests.js
+```
 
 
 In console , usefull commands , we can check:
