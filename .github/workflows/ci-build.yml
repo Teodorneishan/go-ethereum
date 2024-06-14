@@ -25,7 +25,7 @@ jobs:
         
     - name: Change permissions of triecache
       run: |
-        sudo cd datadir/geth/
+        cd datadir/geth/
         sudo chmod -R 777 triecache
         
     - name: Build Docker image
