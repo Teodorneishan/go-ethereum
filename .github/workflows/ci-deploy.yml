@@ -24,18 +24,6 @@ jobs:
         run: cat hardhat.config.js
         working-directory: ./hardhat
         
-      - name: Install npm dependencies
-        run: npm install --save-dev --force hardhat @nomiclabs/hardhat-waffle @nomiclabs/hardhat-ethers @nomicfoundation/hardhat-ignition ethers
-        working-directory: ./hardhat
-        
-      - name: Compile project
-        run: npx hardhat compile
-        working-directory: ./hardhat
-
-      - name: Deploy contracts
-        run: npx hardhat ignition deploy ./ignition/modules/Lock.js --network gethDev
-        working-directory: ./hardhat
-
       - name: Commit and push the new image
         run: |
           CONTAINER_ID=$(docker ps -q --filter "ancestor=teodorneishan/limechain-task-teodor:latest")
