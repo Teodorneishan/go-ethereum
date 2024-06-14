@@ -1,7 +1,7 @@
-npm install --save-dev hardhat @nomiclabs/hardhat-waffle @nomiclabs/hardhat-ethers @nomicfoundation/hardhat-ignition ethers
+npm install --save-dev --force @nomiclabs/hardhat-waffle @nomiclabs/hardhat-ethers @nomicfoundation/hardhat-ignition ethers hardhat@^2.22.5 @nomicfoundation/hardhat-toolbox@^5.0.0
 npx hardhat init -y  ( still i had to press y and choose javascript project )
 npx hardhat compile
-Deploy contracts - npx hardhat ignition deploy ./ignition/modules/Lock.js --network gethDev
+Deploy contracts - echo "yes" | npx hardhat ignition deploy ./ignition/modules/Lock.js --network gethDev
 
 Create account and paste public key in genesis file to import balance
 working dir go-ethereum
@@ -28,7 +28,7 @@ build/bin/geth --datadir ./datadir init genesis.json
 
 
 when starting node , chain data is created.
-build/bin/geth --datadir datadir --port 30304 --http --http.addr "localhost" --http.port 8552 --http.api "personal,eth,web3,txpool,admin"  --networkid 2345 --allow-insecure-unlock --authrpc.port 8553 --nodiscover console
+build/bin/geth --datadir datadir --port 30304 --http --http.addr "localhost" --http.port 8552 --http.api "personal,eth,web3,txpool,admin" --syncmode=full --networkid 2345 --allow-insecure-unlock --authrpc.port 8553 --nodiscover --miner.gaslimit 8000000 console
 
 If we want to start mining
 build/bin/geth attach http://127.0.0.1:8552 <<EOF
