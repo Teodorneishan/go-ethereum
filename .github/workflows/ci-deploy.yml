@@ -33,7 +33,7 @@ jobs:
         working-directory: ./hardhat
 
       - name: install npm dependencies in container needed for hardhat
-        run: docker exec -it devnet sh -c "cd hardhat && npm install --force"
+        run: docker exec -i devnet sh -c "cd hardhat && npm install --force"
         
       - name: Commit and push the new image
         run: |
@@ -43,4 +43,4 @@ jobs:
           docker push teodorneishan/limechain-task-teodor:deployed-$TIMESTAMP
           
       - name: Make tests
-        run: docker exec -it devnet sh -c "cd hardhat && npx hardhat test test/my-tests.js"
+        run: docker exec -i devnet sh -c "cd hardhat && npx hardhat test test/my-tests.js"
