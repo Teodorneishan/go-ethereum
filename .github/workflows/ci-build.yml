@@ -8,10 +8,15 @@ on:
 
 jobs:
   build:
-    if: github.event.pull_request.merged == true && contains(join(github.event.pull_request.labels.*.name, ','), 'CI:Build')
+    if: github.event.pull_request.merged == true && contains(github.event.pull_request.labels.*.name, 'CI:Build')
     runs-on: self-hosted
-
     steps:
+    - name: Fix file ownership
+      run: |
+         cd datadir/geth/
+         sudo chmod -R 777 triecache
+         sudo chown -R teodor:teodor triecache
+      
     - name: Checkout code
       uses: actions/checkout@v2
       with:
@@ -28,21 +33,3 @@ jobs:
 
     - name: Push Docker image
       run: docker push teodorneishan/limechain-task-teodor:latest
-
-  fix-permissions:
-    runs-on: self-hosted
-    needs: []
-    if: always()
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-
-      - name: Fix file ownership
-        run: |
-          cd datadir/geth/
-          sudo chmod -R 777 triecache
-          sudo chown -R teodor:teodor triecache
-
-      - name: Verify ownership
-        run: |
-          ls -l datadir/geth/
