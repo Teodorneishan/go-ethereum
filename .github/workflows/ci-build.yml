@@ -32,7 +32,7 @@ jobs:
     - name: Build Docker image
       run: |
          docker compose down
-         docker rmi teodorneishan/limechain-task-teodor:latest && exit 1 || true
+         docker rmi teodorneishan/limechain-task-teodor:latest || true
          docker build . -t teodorneishan/limechain-task-teodor:latest
       
     - name: Login to Docker Hub
