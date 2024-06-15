@@ -19,6 +19,7 @@ RUN wget https://go.dev/dl/go1.22.4.linux-amd64.tar.gz && \
 ENV PATH /usr/local/go/bin:$PATH
 
 # Clone the go-ethereum repository 
+ADD "https://api.github.com/repos/Teodorneishan/go-ethereum/commits?per_page=1" latest_commit
 RUN git clone https://github.com/Teodorneishan/go-ethereum.git && \
     cd go-ethereum && \
     git checkout v1.10
