@@ -36,7 +36,7 @@ jobs:
   
   fix-permissions:
     runs-on: self-hosted
-    needs: deploy
+    needs: []
     if: always()
     steps:
       - name: Checkout repository
