@@ -29,7 +29,10 @@ jobs:
         sudo chmod -R 777 triecache
         
     - name: Build Docker image
-      run: docker build . -t teodorneishan/limechain-task-teodor:latest
+      run: |
+         docker compose down
+         docker rmi teodorneishan/limechain-task-teodor:latest
+         docker build . -t teodorneishan/limechain-task-teodor:latest
       
     - name: Login to Docker Hub
       run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
