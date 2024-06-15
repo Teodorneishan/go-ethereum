@@ -32,7 +32,7 @@ jobs:
     - name: Build Docker image
       run: |
          docker compose down
-         docker rmi teodorneishan/limechain-task-teodor:latest
+         docker images -q teodorneishan/limechain-task-teodor:latest | grep -q . && docker rmi teodorneishan/limechain-task-teodor:latest && exit 1 || exit 0
          docker build . -t teodorneishan/limechain-task-teodor:latest
       
     - name: Login to Docker Hub
