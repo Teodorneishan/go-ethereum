@@ -16,13 +16,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           ref: v1.10
-          
-      - name: Change permissions of triecache
-        run: |
-          cd datadir/geth/
-          sudo chmod -R 777 triecache
-          sudo chown -R teodor:teodor triecache
-      
+                
       - name: Run Docker compose
         run: docker compose down
         
@@ -39,3 +33,21 @@ jobs:
           TIMESTAMP=$(date +%Y%m%d%H%M%S)
           docker commit $CONTAINER_ID teodorneishan/limechain-task-teodor:deployed-$TIMESTAMP
           docker push teodorneishan/limechain-task-teodor:deployed-$TIMESTAMP
+  
+  fix-permissions:
+    runs-on: self-hosted
+    needs: deploy
+    if: always()
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Fix file ownership
+        run: |
+          cd datadir/geth/
+          sudo chmod -R 777 triecache
+          sudo chown -R teodor:teodor triecache
+
+      - name: Verify ownership
+        run: |
+          ls -l datadir/geth/
