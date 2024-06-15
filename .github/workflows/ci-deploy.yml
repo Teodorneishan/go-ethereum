@@ -33,7 +33,7 @@ jobs:
         working-directory: ./hardhat
 
       - name: install npm dependencies in container needed for hardhat
-        run: docker exec -it devnet sh -c "npm install --force"
+        run: docker exec -it devnet sh -c "cd hardhat && npm install --force"
         
       - name: Commit and push the new image
         run: |
