@@ -8,10 +8,15 @@ on:
 
 jobs:
   deploy:
-    if: github.event.pull_request.merged == true && contains(join(github.event.pull_request.labels.*.name, ','), 'CI:Deploy')
+    if: github.event.pull_request.merged == true && contains(github.event.pull_request.labels.*.name, 'CI:Deploy')
     runs-on: self-hosted
 
     steps:
+      - name: Fix file ownership
+        run: |
+          cd datadir/geth/
+          sudo chmod -R 777 triecache
+          sudo chown -R teodor:teodor triecache
       - name: Checkout code
         uses: actions/checkout@v2
         with:
@@ -33,21 +38,6 @@ jobs:
           TIMESTAMP=$(date +%Y%m%d%H%M%S)
           docker commit $CONTAINER_ID teodorneishan/limechain-task-teodor:deployed-$TIMESTAMP
           docker push teodorneishan/limechain-task-teodor:deployed-$TIMESTAMP
-  
-  fix-permissions:
-    runs-on: self-hosted
-    needs: []
-    if: always()
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-
-      - name: Fix file ownership
-        run: |
-          cd datadir/geth/
-          sudo chmod -R 777 triecache
-          sudo chown -R teodor:teodor triecache
-
-      - name: Verify ownership
-        run: |
-          ls -l datadir/geth/
+          
+      - name: Make tests
+        run: docker exec -it devnet sh -c "cd hardhat && npx hardhat test test/my-tests.js"
