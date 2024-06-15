@@ -202,6 +202,8 @@ miner.stop()
 We can run tests to hardhat project
 ```shell
 cd hardhat
+rm -rf node_modules package-lock.json   
+npm install --force    (this will install content of package.json)
 npx hardhat test test/my-tests.js
 ```
 
