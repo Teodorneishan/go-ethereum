@@ -27,6 +27,7 @@ jobs:
       run: |
         cd datadir/geth/
         sudo chmod -R 777 triecache
+        sudo chown -R teodor:teodor triecache
         
     - name: Build Docker image
       run: |
