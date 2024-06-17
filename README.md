@@ -221,3 +221,34 @@ We can run separately the docker with
 ```shell
 docker run -it -d -p 30304:30304 -p 8552:8552 -p 8553:8553 image_name
 ```
+
+Terraform
+Prerequisites 
+- sudo apt update  ;  sudo apt install awscli   ;  aws --version 
+- terraform - https://developer.hashicorp.com/terraform/install#linux
+- kubectl - https://docs.aws.amazon.com/eks/latest/userguide/install-kubectl.html
+- aws account
+
+Obtain your Access key ID and secret access key for your AWS user and Configure aws CLI
+- aws configure
+- verify it works: aws sts get-caller-identity
+  
+Add policies to user- AmazonEC2FullAccess	
+- AmazonEKSClusterPolicy	
+- AmazonEKSServicePolicy	
+- AmazonS3FullAccess	
+- AmazonVPCFullAccess	
+- CloudWatchLogsFullAccess	
+- IAMFullAccess
+
+Create manually s3 bucket 
+- block public access ; default encription - bucket key enabled
+- this is where we would place state file after first initial terraform apply
+
+ ```shell
+cd limechain-eks
+terraform init
+terraform plan -var='registry_username=teodorneishan' -var='registry_password=some_password' -var='registry_server=docker.io/limechain-task-teodor' -var='registry_email=some_email'
+``` 
+  
+
