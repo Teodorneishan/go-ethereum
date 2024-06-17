@@ -248,7 +248,7 @@ Create manually s3 bucket
  ```shell
 cd limechain-eks
 terraform init
-terraform plan -var='registry_username=teodorneishan' -var='registry_password=some_password' -var='registry_server=docker.io/limechain-task-teodor' -var='registry_email=some_email'
+terraform plan -var='registry_username=some_username' -var='registry_password=some_password' -var='registry_server=docker.io/limechain-task-teodor' -var='registry_email=some_email'
 ``` 
   
 
