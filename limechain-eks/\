@@ -52,12 +52,10 @@ resource "kubernetes_service" "test" {
     name      = "limechain-svc"
     namespace = kubernetes_namespace.test.metadata.0.name
   }
-  wait_for_load_balancer = "false"
   spec {
     selector = {
       app = kubernetes_deployment.test.spec.0.template.0.metadata.0.labels.app
     }
-    allocate_load_balancer_node_ports = "false"
     type = "ClusterIP"
     port {
       port        = 30304
